@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CaminAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::controller(CaminAPIController::class)->group(function () {
+    Route::get('/camin', 'index');
+    Route::get('/camin/{camins_id}', 'show');
+    Route::post('/camin', 'store');
+    Route::put('/camin/{camins_id}', 'update');
+    Route::delete('/camin/{camins_id}', 'destroy');
 });
