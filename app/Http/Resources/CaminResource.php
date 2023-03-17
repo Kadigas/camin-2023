@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class CaminResource extends JsonResource
 {
-    public static $wrap = 'camin';
     /**
      * Transform the resource into an array.
      *

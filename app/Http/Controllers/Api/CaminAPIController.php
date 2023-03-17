@@ -60,6 +60,42 @@ class CaminAPIController extends Controller
         return response()->json('', 200);
     }
 
+    public function store_multiple(Request $request){
+        $caminsData = $request->all();
+        $response = [];
+
+        foreach($caminsData as $camin){
+            $validator = Validator::make($camin, [
+                'nama' => 'required',
+                'nrp' => 'required|numeric',
+                'jurusan' => 'required',
+                'angkatan_id' => 'required',
+            ],
+            [
+                'nama.required' => 'Name can\'t be empty!',
+                'nrp.required' => 'NRP can\'t be empty!',
+                'jurusan.required' => 'Jurusan can\'t be empty!',
+                'angkatan_id' => 'Please choose your angkatan',
+            ]);
+            
+            if ($validator->fails()) {
+                array_push($response, 'Validation failed');
+            }
+            else{
+                array_push($response, 'Validation successfull');
+            }
+            
+            Camin::create([
+                'nama' => $camin['nama'],
+                'angkatan_id' => $camin['angkatan_id'],
+                'nrp' => $camin['nrp'],
+                'jurusan' => $camin['jurusan'],
+            ]);
+        }
+
+        return response()->json($response, 200);
+    }
+
     /**
      * Display the specified resource.
      *
