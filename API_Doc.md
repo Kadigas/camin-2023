@@ -341,3 +341,20 @@ Camin data with inserted id doesn't exist.
     "error": "Data camin not found"
 }
 ```
+
+## General Error
+
+### 404 Not Found
+
+The API route doesn't exist.
+
+```json
+{
+    "status": "error",
+    "error": "route not found"
+}
+```
+
+### 405 Method Not Allowed
+
+The method used for a certain API route is not supported.

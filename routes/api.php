@@ -31,3 +31,10 @@ Route::controller(CaminAPIController::class)->group(function () {
     Route::put('/camin/{camins_id}', 'update');
     Route::delete('/camin/{camins_id}', 'destroy');
 });
+
+Route::fallback(function () {
+    return response()->json([
+        'status' => 'error',
+        'error' => 'route not found'
+    ], 404);
+});
